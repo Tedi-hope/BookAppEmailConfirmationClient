@@ -10,7 +10,7 @@ const ShowBook = () => {
 
   useEffect(()=>{
     axios
-    .get(`https://bookappserverassignment.vercel.app/books/${id}`)
+    .get(`https://bookappemailconfirmationserver.vercel.app/books/${id}`)
     .then((response)=>{
         setBook(response.data);
         //console.log(book);

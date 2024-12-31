@@ -21,7 +21,7 @@ const CreateBooks = () => {
        image,
      };
      axios
-     .post('https://bookappserverassignment.vercel.app/books',data,{
+     .post('https://bookappemailconfirmationserver.vercel.app/books',data,{
         headers:{
           'Content-Type':'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem("token")}` // Ensure token is included
@@ -39,7 +39,7 @@ const CreateBooks = () => {
   };
 
 //localhost server====>http://localhost:4444/books
-//vercel host=====>https://bookappserverassignment.vercel.app/books
+//vercel host=====>https://bookappemailconfirmationserver.vercel.app/books
 
   return (
     <div className="p-4">
