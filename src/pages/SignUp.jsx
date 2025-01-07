@@ -14,12 +14,18 @@ const SignUp = () => {
     const handleSignUp=()=>{
         axios 
            .post('https://bookappemailconfirmationserver.vercel.app/user/signup',{username, email, password})
-           .then(()=>{
-            enqueueSnackbar('Sign up Successful',{variant:'success'});
+           .then((response)=>{
+            if(response?.status===201){
+               enqueueSnackbar('Sign Up Successful! Please confirm your email before 1 hour!!', { variant: 'success' });
+             }
             navigate('/');
            })
-           .catch((error)=>{
-            enqueueSnackbar('Sign up Failed',{variant:'error'});
+           .catch((error)=>{ 
+            //Handle specific error messages
+           if(error.response?.status===400){
+            enqueueSnackbar('Username or email already exists', { variant: 'error' });
+            }
+
            });
         };
 

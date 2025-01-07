@@ -18,12 +18,22 @@ const Login = () => {
         const { username } = response.data;
         console.log('Username:', username);
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', response.data.username)
+        localStorage.setItem('user', response.data.username);
         enqueueSnackbar('Login Successful', { variant: 'success' });
         navigate('/home', { state: { username } });
       })
       .catch((error) => {
-        enqueueSnackbar('Login Failed', { variant: 'error' });
+        
+         //Handle specific error messages
+         if(error.response?.status===404){
+          enqueueSnackbar('User not found', { variant: 'error' });
+          }
+        if(error.response?.status===401){
+          enqueueSnackbar('Incorrect password!!!',{variant:'error'});
+        }
+        if(error.response?.status===403){
+          enqueueSnackbar('Please confirm your email before logging in to the site!!!',{variant:'error'});
+        }
         console.log(error)
       });
   }
